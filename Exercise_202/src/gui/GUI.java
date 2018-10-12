@@ -23,17 +23,52 @@ public class GUI extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        miAdd = new javax.swing.JMenuItem();
+        miHideBand = new javax.swing.JMenuItem();
+        miShowBand = new javax.swing.JMenuItem();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableRadioStations = new javax.swing.JTable();
+
+        miAdd.setText("jMenuItem1");
+        jPopupMenu1.add(miAdd);
+
+        miHideBand.setText("jMenuItem1");
+        jPopupMenu1.add(miHideBand);
+
+        miShowBand.setText("jMenuItem1");
+        jPopupMenu1.add(miShowBand);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        tableRadioStations.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tableRadioStations);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -82,5 +117,11 @@ public class GUI extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenuItem miAdd;
+    private javax.swing.JMenuItem miHideBand;
+    private javax.swing.JMenuItem miShowBand;
+    private javax.swing.JTable tableRadioStations;
     // End of variables declaration//GEN-END:variables
 }
