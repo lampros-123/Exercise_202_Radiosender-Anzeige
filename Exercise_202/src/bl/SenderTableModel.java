@@ -44,14 +44,7 @@ public class SenderTableModel extends AbstractTableModel{
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Sender s = senders.get(rowIndex);
-        
-        switch(columnIndex) {
-            case 0: return s.getName();
-            case 1: return s.getFrequency();
-            case 2: return s.getBand();
-        }
-        return "?";
+        return senders.get(rowIndex);
     }
 
     @Override
