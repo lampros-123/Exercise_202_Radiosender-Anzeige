@@ -21,12 +21,17 @@ public class SenderTableRenderer implements TableCellRenderer {
         JLabel label = new JLabel();
         label.setOpaque(true);
         label.setFont(new Font("Arial", Font.BOLD + Font.ITALIC, 14));
-        label.setForeground(Color.lightGray);
         label.setHorizontalAlignment(SwingConstants.CENTER);
+        label.setForeground(Color.lightGray);
         if (sender.getBand().equals("AM")) {
             label.setBackground(Color.blue);
         } else {
             label.setBackground(Color.red);
+        }
+        
+        if(isSelected) {
+            label.setBackground(Color.black);
+            label.setForeground(Color.white);
         }
 
         switch (column) {
