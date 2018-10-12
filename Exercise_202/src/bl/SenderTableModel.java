@@ -13,8 +13,13 @@ public class SenderTableModel extends AbstractTableModel{
     private LinkedList<Sender> senders = new LinkedList<>();
 
     public void add(Sender s) {
-        senders.add(s);
-        fireTableRowsInserted(senders.size()-1, senders.size()-1);
+        int i;
+        for (i = 0; i < senders.size(); i++) {
+            if(senders.get(i).getFrequency() > s.getFrequency())
+                break;
+        }
+        senders.add(i, s);
+        fireTableRowsInserted(i, i);
     }
     
     public void hideBand() {
