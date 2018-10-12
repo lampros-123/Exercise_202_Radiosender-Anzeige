@@ -82,9 +82,9 @@ public class SenderDlg extends javax.swing.JDialog {
 
     private void btOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOkActionPerformed
         try{
-            String name = tfName.getName();
+            String name = tfName.getText();
             double freq = Double.parseDouble(tfFrequency.getText());
-            String band = tfBand.getName();
+            String band = tfBand.getText();
             s = new Sender(name, freq, band);
             this.dispose();
         } catch(Exception e) {

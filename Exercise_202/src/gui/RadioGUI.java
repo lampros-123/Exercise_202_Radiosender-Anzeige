@@ -7,12 +7,11 @@ import bl.SenderTableModel;
  *
  * @author Matthias
  */
-public class GUI extends javax.swing.JDialog {
+public class RadioGUI extends javax.swing.JFrame {
 
     private SenderTableModel model = new SenderTableModel();
 
-    public GUI(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public RadioGUI() {
         initComponents();
         model.add(new Sender("Oe3", 89.20, "FM"));
         tableRadioStations.setModel(model);
@@ -35,6 +34,11 @@ public class GUI extends javax.swing.JDialog {
         tableRadioStations = new javax.swing.JTable();
 
         miAdd.setText("hinzufügen");
+        miAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miAddActionPerformed(evt);
+            }
+        });
         jPopupMenu1.add(miAdd);
 
         miHideBand.setText("Band verstecken");
@@ -53,7 +57,9 @@ public class GUI extends javax.swing.JDialog {
         });
         jPopupMenu1.add(miShowBand);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jScrollPane1.setComponentPopupMenu(jPopupMenu1);
 
         tableRadioStations.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -89,6 +95,14 @@ public class GUI extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void miAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAddActionPerformed
+        SenderDlg dlg = new SenderDlg(this, true);
+        dlg.setVisible(true);
+        if(dlg.s != null) {
+            model.add(dlg.s);
+        }
+    }//GEN-LAST:event_miAddActionPerformed
+
     private void miHideBandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miHideBandActionPerformed
         model.hideBand();
     }//GEN-LAST:event_miHideBandActionPerformed
@@ -114,27 +128,20 @@ public class GUI extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RadioGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RadioGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RadioGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RadioGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
-        /* Create and display the dialog */
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                GUI dialog = new GUI(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+                new RadioGUI().setVisible(true);
             }
         });
     }
