@@ -1,17 +1,21 @@
 package gui;
 
+import bl.Sender;
+import bl.SenderTableModel;
+
 /**
  *
  * @author Matthias
  */
 public class GUI extends javax.swing.JDialog {
 
-    /**
-     * Creates new form GUI
-     */
+    private SenderTableModel model = new SenderTableModel();
+
     public GUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        model.add(new Sender("Oe3", 89.20, "FM"));
+        tableRadioStations.setModel(model);
     }
 
     /**
@@ -30,13 +34,23 @@ public class GUI extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableRadioStations = new javax.swing.JTable();
 
-        miAdd.setText("jMenuItem1");
+        miAdd.setText("hinzufügen");
         jPopupMenu1.add(miAdd);
 
-        miHideBand.setText("jMenuItem1");
+        miHideBand.setText("Band verstecken");
+        miHideBand.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miHideBandActionPerformed(evt);
+            }
+        });
         jPopupMenu1.add(miHideBand);
 
-        miShowBand.setText("jMenuItem1");
+        miShowBand.setText("Band anzeigen");
+        miShowBand.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miShowBandActionPerformed(evt);
+            }
+        });
         jPopupMenu1.add(miShowBand);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -52,6 +66,7 @@ public class GUI extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableRadioStations.setComponentPopupMenu(jPopupMenu1);
         jScrollPane1.setViewportView(tableRadioStations);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -73,6 +88,14 @@ public class GUI extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void miHideBandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miHideBandActionPerformed
+        model.hideBand();
+    }//GEN-LAST:event_miHideBandActionPerformed
+
+    private void miShowBandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miShowBandActionPerformed
+        model.showBand();
+    }//GEN-LAST:event_miShowBandActionPerformed
 
     /**
      * @param args the command line arguments

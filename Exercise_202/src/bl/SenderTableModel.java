@@ -12,6 +12,21 @@ public class SenderTableModel extends AbstractTableModel{
     private static String[] columns = {"Sender", "Frequenz", "Band"};
     private LinkedList<Sender> senders = new LinkedList<>();
 
+    public void add(Sender s) {
+        senders.add(s);
+        fireTableRowsInserted(senders.size()-1, senders.size()-1);
+    }
+    
+    public void hideBand() {
+        columns = new String[]{"Sender", "Frequenz"};
+        fireTableStructureChanged();
+    }
+    
+    public void showBand() {
+        columns = new String[]{"Sender", "Frequenz", "Band"};
+        fireTableStructureChanged();
+    }
+    
     @Override
     public int getRowCount() {
         return senders.size();
