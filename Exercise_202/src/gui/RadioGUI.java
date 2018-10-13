@@ -2,6 +2,8 @@ package gui;
 
 import bl.Sender;
 import bl.SenderTableModel;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -59,6 +61,11 @@ public class RadioGUI extends javax.swing.JFrame {
         jPopupMenu1.add(miShowBand);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jScrollPane1.setComponentPopupMenu(jPopupMenu1);
 
@@ -111,6 +118,18 @@ public class RadioGUI extends javax.swing.JFrame {
     private void miShowBandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miShowBandActionPerformed
         model.showBand();
     }//GEN-LAST:event_miShowBandActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        JFileChooser chooser = new JFileChooser(".");
+        int result = chooser.showSaveDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            try {
+                model.saveSenders(chooser.getSelectedFile());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Unable to save to selected file");
+            }
+        }
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
