@@ -15,9 +15,19 @@ public class RadioGUI extends javax.swing.JFrame {
 
     public RadioGUI() {
         initComponents();
-        model.add(new Sender("Oe3", 89.20, "FM"));
         tableRadioStations.setModel(model);
         tableRadioStations.setDefaultRenderer(Object.class, new SenderTableRenderer());
+
+        JFileChooser chooser = new JFileChooser(".");
+        int result = chooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            try {
+                model.loadSenders(chooser.getSelectedFile());
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Unable to load from selected file");
+            }
+        }
     }
 
     /**
@@ -106,7 +116,7 @@ public class RadioGUI extends javax.swing.JFrame {
     private void miAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAddActionPerformed
         SenderDlg dlg = new SenderDlg(this, true);
         dlg.setVisible(true);
-        if(dlg.s != null) {
+        if (dlg.s != null) {
             model.add(dlg.s);
         }
     }//GEN-LAST:event_miAddActionPerformed
@@ -126,6 +136,7 @@ public class RadioGUI extends javax.swing.JFrame {
             try {
                 model.saveSenders(chooser.getSelectedFile());
             } catch (Exception e) {
+                e.printStackTrace();
                 JOptionPane.showMessageDialog(this, "Unable to save to selected file");
             }
         }
